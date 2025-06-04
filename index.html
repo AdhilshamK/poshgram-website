@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poshgram | Creative Digital Studio</title>
+    <style>
+        /* ===== BASE STYLES ===== */
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--black);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+        
+        /* ===== TYPOGRAPHY ===== */
+        h1 {
+            font-size: 6vw;
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+        
+        p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* ===== LAYOUT ===== */
+        .container {
+            width: 100%;
+            padding: 0 2rem;
+        }
+        
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference;
+            color: var(--white);
+        }
+        
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            padding: 0 2rem;
+        }
+        
+        /* ===== WORK SECTION ===== */
+        .work {
+            padding: 10rem 2rem;
+        }
+        
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        
+        .work-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+        }
+        
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .work-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .work-item-title {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            padding: 10rem 2rem;
+            background-color: var(--gray);
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            padding: 10rem 2rem;
+        }
+        
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-link {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-top: 2rem;
+            display: inline-block;
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 5rem 2rem;
+            text-align: center;
+            background-color: var(--black);
+            color: var(--white);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        /* ===== MOBILE STYLES ===== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 12vw;
+            }
+            
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+            
+            .work, .about, .contact {
+                padding: 5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">Poshgram</a>
+        <nav class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-posing-in-a-modern-living-room-39853-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>Digital craft for modern brands</h1>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section class="work" id="work">
+        <div class="container">
+            <h2>Selected Work</h2>
+            <div class="work-grid">
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Project 1">
+                    <div class="work-item-title">Project One</div>
+                </div>
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Project 2">
+                    <div class="work-item-title">Project Two</div>
+                </div>
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Project 3">
+                    <div class="work-item-title">Project Three</div>
+                </div>
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Project 4">
+                    <div class="work-item-title">Project Four</div>
+                </div>
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1497032628192-86f99bcd96bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Project 5">
+                    <div class="work-item-title">Project Five</div>
+                </div>
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Project 6">
+                    <div class="work-item-title">Project Six</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Us</h2>
+                <p>Poshgram is a creative digital studio specializing in brand identity, digital design, and immersive experiences. We work with forward-thinking brands to create meaningful connections through design and technology.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Get in Touch</h2>
+                <p>Interested in working together? We'd love to hear from you.</p>
+                <a href="mailto:hello@poshgram.in" class="contact-link">hello@poshgram.in</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© <span id="year"></span> Poshgram. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Video background fallback for mobile
+        if (window.innerWidth < 768) {
+            const video = document.querySelector('.hero-video');
+            video.style.display = 'none';
+            document.querySelector('.hero').style.backgroundImage = 'url(https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80)';
+            document.querySelector('.hero').style.backgroundSize = 'cover';
+            document.querySelector('.hero').style.backgroundPosition = 'center';
+        }
+    </script>
+</body>
+</html>
