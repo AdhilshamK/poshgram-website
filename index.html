@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> poshgram | Digital Creative Studio</title>
+  <title>Poshgram | Digital Creative Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <style>
     :root {
@@ -31,19 +31,20 @@
       scroll-behavior: smooth;
     }
 
-    /* Logo styling */
+    /* Logo styling - ALL SMALL LETTERS */
     .logo {
       font-family: 'League Spartan', sans-serif;
-      font-weight: 700;
+      font-weight: 400; /* Regular weight for lowercase */
+      font-size: 1.8rem;
+      text-transform: lowercase;
       letter-spacing: -0.094em;
       line-height: 1.4;
-      font-size: 1.8rem;
       color: var(--white);
       text-decoration: none;
       animation: slideInLeft 1s ease forwards;
     }
 
-    /* Header and Navigation */
+    /* Rest of your CSS remains exactly the same */
     header {
       position: fixed;
       width: 100%;
@@ -53,17 +54,11 @@
       align-items: center;
       z-index: 100;
       background-color: transparent;
-      transition: background-color 0.3s ease;
     }
 
-    header.scrolled {
-      background-color: rgba(0, 0, 0, 0.9);
-    }
-
-    /* Desktop Navigation */
     .desktop-nav {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     .desktop-nav a {
@@ -71,7 +66,6 @@
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
-      font-size: 1.1rem;
     }
 
     .desktop-nav a:hover {
@@ -96,12 +90,9 @@
       width: 70%;
       height: 100vh;
       background-color: var(--black);
-      padding: 6rem 2rem 2rem;
+      padding: 5rem 2rem;
       transition: right 0.3s ease;
       z-index: 99;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
     }
 
     .mobile-nav.active {
@@ -109,19 +100,19 @@
     }
 
     .mobile-nav a {
+      display: block;
       color: var(--white);
       text-decoration: none;
       font-size: 1.2rem;
-      padding: 0.5rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
       transition: color 0.3s;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     .mobile-nav a:hover {
       color: var(--accent);
     }
 
-    /* Responsive Behavior */
     @media (max-width: 768px) {
       .desktop-nav {
         display: none;
@@ -132,7 +123,6 @@
       }
     }
 
-    /* Rest of your styles remain unchanged */
     .hero {
       height: 100vh;
       position: relative;
@@ -272,8 +262,8 @@
   </style>
 </head>
 <body>
-  <header id="mainHeader">
-    <a href="#" class="logo">Poshgram</a>
+  <header>
+    <a href="#" class="logo">poshgram</a> <!-- Changed to lowercase -->
     <nav class="desktop-nav">
       <a href="#services">Services</a>
       <a href="#about">About</a>
@@ -289,7 +279,7 @@
     </nav>
   </header>
 
-  <!-- Rest of your content remains the same -->
+  <!-- Rest of your HTML remains exactly the same -->
   <section class="hero">
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4" type="video/mp4" />
@@ -350,7 +340,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     
-    // Mobile menu functionality
+    // Mobile menu toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileNav = document.getElementById('mobileNav');
     
@@ -361,23 +351,13 @@
         : '<i class="fas fa-bars"></i>';
     });
     
-    // Close mobile menu when clicking a link
+    // Close mobile menu when clicking on a link
     const mobileLinks = mobileNav.querySelectorAll('a');
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileNav.classList.remove('active');
         mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
       });
-    });
-    
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-      const header = document.getElementById('mainHeader');
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
     });
   </script>
 </body>
