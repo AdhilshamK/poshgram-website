@@ -1,544 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poshgram | Digital Creative Studio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* ===== BASE STYLES ===== */
-        :root {
-            --primary: #ffffff;
-            --secondary: #f5f5f5;
-            --accent: #ff3366;
-            --text: #ffffff;
-            --white: #ffffff;
-            --black: #000000;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-color: var(--black);
-        }
-        
-        /* ===== TYPOGRAPHY ===== */
-        h1 {
-            font-size: clamp(3rem, 8vw, 8rem);
-            font-weight: 700;
-            line-height: 0.9;
-            color: var(--white);
-            mix-blend-mode: difference;
-        }
-        
-        h2 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            margin-bottom: 1.5rem;
-            color: var(--white);
-        }
-        
-        p {
-            font-size: clamp(1rem, 1.2vw, 1.2rem);
-            color: var(--white);
-            mix-blend-mode: difference;
-            max-width: 80%;
-        }
-        
-        /* ===== HEADER ===== */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            mix-blend-mode: difference;
-            color: white;
-        }
-        
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--white);
-            text-decoration: none;
-        }
-        
-        /* ===== HAMBURGER MENU ===== */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.8rem;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        
-        .desktop-nav {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .desktop-nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-        
-        .desktop-nav a:hover {
-            color: var(--accent);
-        }
-        
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 70%;
-            height: 100vh;
-            background: var(--black);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            padding: 6rem 2rem;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        
-        .mobile-nav.active {
-            right: 0;
-        }
-        
-        .mobile-nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 500;
-        }
-        
-        /* ===== HERO SECTION ===== */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 60%;
-        }
-        
-        .hero h1 {
-            margin-bottom: 1rem;
-        }
-        
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-        }
-        
-        /* ===== WORK GRID ===== */
-        .work {
-            padding: 8rem 2rem;
-            background-color: var(--black);
-        }
-        
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-        
-        .work-item {
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-        }
-        
-        .work-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            filter: grayscale(30%) contrast(90%) brightness(80%);
-        }
-        
-        .work-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
-            mix-blend-mode: multiply;
-            z-index: 1;
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .work-item:hover video {
-            filter: grayscale(0%) contrast(100%) brightness(100%);
-            transform: scale(1.03);
-        }
-        
-        .work-item:hover::before {
-            background: rgba(0, 0, 0, 0.1);
-        }
-        
-        /* ===== CONTACT FORM ===== */
-        .contact {
-            padding: 8rem 2rem;
-            background-color: var(--secondary);
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--black);
-        }
-        
-        input, textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            font-family: inherit;
-            font-size: 1rem;
-            border-radius: 4px;
-            background-color: var(--white);
-            color: var(--black);
-        }
-        
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        button {
-            background-color: var(--primary);
-            color: var(--black);
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-        
-        button:hover {
-            background-color: var(--accent);
-            transform: translateY(-2px);
-            color: var(--white);
-        }
-        
-        /* ===== FOOTER ===== */
-        footer {
-            padding: 4rem 2rem;
-            text-align: center;
-            background-color: var(--black);
-            color: var(--white);
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: var(--accent);
-        }
-        
-        /* ===== MOBILE STYLES ===== */
-        @media (max-width: 768px) {
-            /* Header */
-            header {
-                padding: 1.5rem;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            .desktop-nav {
-                display: none;
-            }
-            
-            /* Hero Section */
-            .hero {
-                height: 90vh;
-                padding: 0 1.5rem;
-            }
-            
-            .hero-content {
-                max-width: 100%;
-                padding-top: 3rem;
-            }
-            
-            /* Work Grid */
-            .work {
-                padding: 4rem 1.5rem;
-            }
-            
-            .work-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            /* Contact Form */
-            .contact {
-                padding: 4rem 1.5rem;
-            }
-            
-            /* Footer */
-            footer {
-                padding: 3rem 1.5rem;
-            }
-            
-            /* Typography */
-            h1 {
-                font-size: clamp(2.5rem, 10vw, 4rem);
-            }
-            
-            p {
-                max-width: 100%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poshgram | Digital Creative Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #ffffff;
+      --secondary: #f5f5f5;
+      --accent: #ff3366;
+      --text: #ffffff;
+      --white: #ffffff;
+      --black: #000000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background-color: var(--black);
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background-color: transparent;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--white);
+      text-decoration: none;
+      animation: slideInLeft 1s ease forwards;
+    }
+
+    .desktop-nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .desktop-nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .desktop-nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.4);
+    }
+
+    .hero-content {
+      color: var(--white);
+      max-width: 800px;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+    }
+
+    .section {
+      padding: 5rem 2rem;
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .section p {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding-top: 2rem;
+    }
+
+    .service {
+      background: var(--white);
+      color: var(--black);
+      padding: 2rem;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .service:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      font-size: 1.5rem;
+      padding: 0.8rem 1rem;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .social-links a {
+      color: var(--white);
+      margin: 0 0.5rem;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <a href="#" class="logo">Poshgram</a>
-        <button class="menu-toggle">☰</button>
-        <nav class="desktop-nav">
-            <a href="#work">Work</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <nav class="mobile-nav">
-            <a href="#work">Work</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+  <header>
+    <a href="#" class="logo">Poshgram</a>
+    <nav class="desktop-nav">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <!-- Hero Section with Video Background -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Digital craft for modern brands</h1>
-            <p>We design immersive experiences that connect cultures and communities</p>
-        </div>
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-    </section>
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-content">
+      <h1>Digital Craft for Modern Brands</h1>
+      <p>We create stunning designs and immersive digital experiences.</p>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section class="work" id="about">
-        <h2>About Poshgram</h2>
-        <p style="margin-bottom: 2rem; max-width: 800px;">
-            Poshgram is a digital creative studio specializing in brand identity, web design, and immersive digital experiences. 
-            Our team of designers and developers work collaboratively to create stunning visuals and seamless interactions.
-        </p>
-        <div class="work-grid">
-            <div class="work-item">
-                <video autoplay muted loop playsinline>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-dancing-under-neon-lights-1230-large.mp4" type="video/mp4">
-                    Your browser does not support HTML5 video.
-                </video>
-            </div>
-            <div class="work-item">
-                <video autoplay muted loop playsinline>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-man-dancing-under-changing-lights-1240-large.mp4" type="video/mp4">
-                    Your browser does not support HTML5 video.
-                </video>
-            </div>
-        </div>
-    </section>
+  <section class="section" id="services">
+    <h2>Our Services</h2>
+    <p>We offer a wide range of creative and digital services to elevate your brand.</p>
+    <div class="services-grid">
+      <div class="service">
+        <h3>Brand Identity</h3>
+        <p>Logo design, brand guidelines, and full identity systems to establish your presence.</p>
+      </div>
+      <div class="service">
+        <h3>Web Design</h3>
+        <p>Modern, responsive websites built to convert and reflect your brand’s essence.</p>
+      </div>
+      <div class="service">
+        <h3>Social Media Marketing</h3>
+        <p>Creative strategies and content that grow your community and engagement.</p>
+      </div>
+      <div class="service">
+        <h3>Motion Graphics</h3>
+        <p>Animated visuals that bring your message to life in a captivating way.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Work Grid -->
-    <section class="work" id="work">
-        <h2>Selected Work</h2>
-        <div class="work-grid">
-            <div class="work-item">
-                <video autoplay muted loop playsinline>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-stylish-man-walking-on-a-dark-alley-34556-large.mp4" type="video/mp4">
-                    Your browser does not support HTML5 video.
-                </video>
-            </div>
-            <div class="work-item">
-                <video autoplay muted loop playsinline>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-walking-on-a-dark-alley-34555-large.mp4" type="video/mp4">
-                    Your browser does not support HTML5 video.
-                </video>
-            </div>
-            <div class="work-item">
-                <video autoplay muted loop playsinline>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-portrait-of-a-woman-in-a-pool-1259-large.mp4" type="video/mp4">
-                    Your browser does not support HTML5 video.
-                </video>
-            </div>
-            <div class="work-item">
-                <video autoplay muted loop playsinline>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-walking-under-a-neon-tunnel-34554-large.mp4" type="video/mp4">
-                    Your browser does not support HTML5 video.
-                </video>
-            </div>
-            <div class="work-item">
-                <video autoplay muted loop playsinline>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-man-walking-under-a-neon-tunnel-34553-large.mp4" type="video/mp4">
-                    Your browser does not support HTML5 video.
-                </video>
-            </div>
-            <div class="work-item">
-                <video autoplay muted loop playsinline>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-walking-in-a-dark-tunnel-34552-large.mp4" type="video/mp4">
-                    Your browser does not support HTML5 video.
-                </video>
-            </div>
-        </div>
-    </section>
+  <section class="section" id="about">
+    <h2>About Poshgram</h2>
+    <p>We’re a digital creative studio based in India. Our work blends art and strategy to deliver meaningful results for visionary brands.</p>
+  </section>
 
-    <!-- Contact Form -->
-    <section class="contact" id="contact">
-        <h2 style="color: var(--black);">Get in Touch</h2>
-        <form class="contact-form" id="poshgramForm">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
+  <section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p>We’d love to hear from you. Let’s build something amazing together.</p>
+    <p>Email: contact@poshgram.in</p>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© <span id="year"></span> Poshgram. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#" aria-label="Instagram">📸</a>
-            <a href="#" aria-label="Twitter">🐦</a>
-            <a href="#" aria-label="LinkedIn">💼</a>
-            <a href="#" aria-label="Dribbble">🏀</a>
-        </div>
-    </footer>
+  <footer>
+    <p>&copy; <span id="year"></span> Poshgram. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/poshgram.in" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </footer>
 
-    <script>
-        // Current year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
+  <a href="https://wa.me/917356733512" class="whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-        // Mobile menu toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileNav = document.querySelector('.mobile-nav');
-        
-        menuToggle.addEventListener('click', () => {
-            mobileNav.classList.toggle('active');
-            menuToggle.textContent = mobileNav.classList.contains('active') ? '✕' : '☰';
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.mobile-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-                menuToggle.textContent = '☰';
-            });
-        });
-
-        // Form submission handling
-        document.getElementById('poshgramForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            
-            // Here you would typically send to a server
-            fetch('https://formspree.io/f/YOUR_FORM_ID', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('Thank you for your message! We will contact you soon.');
-                    this.reset();
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-            })
-            .catch(error => {
-                alert('There was a problem sending your message. Please try again later.');
-                console.error('Error:', error);
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
